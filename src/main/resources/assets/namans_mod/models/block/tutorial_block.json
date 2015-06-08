@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "namans_mod:blocks/tutorial_block"
+    }
+}
