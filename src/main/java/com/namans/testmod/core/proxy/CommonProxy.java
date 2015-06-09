@@ -16,7 +16,7 @@ public class CommonProxy {
 		ModBlocks.registerAll();
 	}
 	public void init(FMLInitializationEvent e) {
-		ModCrafting.initCrafting();
+		ModCrafting.registerAll();
 	}
 	public void postInit(FMLPostInitializationEvent e) {
 	}

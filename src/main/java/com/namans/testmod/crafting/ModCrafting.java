@@ -8,9 +8,21 @@ import com.namans.testmod.blocks.base.ModBlocks;
 import com.namans.testmod.items.base.ModItems;
 
 public class ModCrafting {
-	public static void initCrafting() {
-		GameRegistry.addRecipe(new ItemStack(ModBlocks.BASIC.getBlock()),	"##","##",	'#', ModItems.BASIC.getItem());
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.BASIC.getItem()), Items.redstone, new ItemStack(Items.dye, 1, 4));
-		GameRegistry.addSmelting(Items.diamond, new ItemStack(ModItems.BASIC.getItem()), 1.0f);
+	public static void registerAll() {
+		registerShapedRecipies();
+		registerShapelessRecipies();
+		registerSmeltingRecipies();
+	}
+
+	private static void registerShapedRecipies() {
+		GameRegistry.addRecipe(ModBlocks.BASIC.getNewItemStack(), "##", "##", '#', ModItems.BASIC.getItem());
+	}
+
+	private static void registerShapelessRecipies() {
+		GameRegistry.addShapelessRecipe(ModItems.BASIC.getNewItemStack(), Items.redstone, new ItemStack(Items.dye, 1, 4));
+	}
+
+	private static void registerSmeltingRecipies() {
+		GameRegistry.addSmelting(Items.diamond, ModItems.BASIC.getNewItemStack(), 1.0f);
 	}
 }

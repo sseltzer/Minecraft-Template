@@ -6,6 +6,7 @@ import com.namans.testmod.items.basic.BasicItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public enum ModItems {
@@ -28,8 +29,17 @@ public enum ModItems {
 	public Item getItem() {
 		return item;
 	}
+	public ItemStack getNewItemStack() {
+		return new ItemStack(getItem());
+	}
+	public ItemStack getNewItemStack(int amount, int metaData) {
+		return new ItemStack(getItem(), amount, metaData);
+	}
 	public String getItemName() {
 		return itemName;
+	}
+	public ModelResourceLocation getResource() {
+		return new ModelResourceLocation(ModConfig.MOD_ID + ":" + getItem().getUnlocalizedName().substring(5), "inventory");
 	}
 	public static void registerAll() {
 		for (ModItems item : ModItems.values()) {
@@ -38,7 +48,7 @@ public enum ModItems {
 	}
 	public static void registerAllRenderers() {
 	    for (ModItems item : ModItems.values()) {
-	    	Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item.getItem(), 0, new ModelResourceLocation(ModConfig.MOD_ID + ":" + item.getItem().getUnlocalizedName().substring(5), "inventory"));
+	    	Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item.getItem(), 0, item.getResource());
 		}
 	}
 }

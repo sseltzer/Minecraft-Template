@@ -4,11 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.namans.testmod.blocks.basic.BasicBlock;
 import com.namans.testmod.core.main.ModConfig;
-import com.namans.testmod.items.basic.BasicItem;
 
 public enum ModBlocks {
 	
@@ -30,8 +30,17 @@ public enum ModBlocks {
 	public Block getBlock() {
 		return block;
 	}
+	public ItemStack getNewItemStack() {
+		return new ItemStack(getBlock());
+	}
+	public ItemStack getNewItemStack(int amount, int metaData) {
+		return new ItemStack(getBlock(), amount, metaData);
+	}
 	public String getBlockName() {
 		return blockName;
+	}
+	public ModelResourceLocation getResource() {
+		return new ModelResourceLocation(ModConfig.MOD_ID + ":" + getBlock().getUnlocalizedName().substring(5), "inventory");
 	}
 	public static void registerAll() {
 		for (ModBlocks block : ModBlocks.values()) {
@@ -42,7 +51,7 @@ public enum ModBlocks {
 	}
 	public static void registerAllRenderers() {
 	    for (ModBlocks block : ModBlocks.values()) {
-	    	Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block.getBlock()), 0, new ModelResourceLocation(ModConfig.MOD_ID  + ":" + block.getBlock().getUnlocalizedName().substring(5), "inventory"));
+	    	Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block.getBlock()), 0, block.getResource());
     	}
 	}
 }

@@ -1,4 +1,4 @@
-	package com.namans.testmod.core.proxy;
+package com.namans.testmod.core.proxy;
 
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
