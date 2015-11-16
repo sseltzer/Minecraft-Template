@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public enum ModItems {
-	
+	// Added comment
 	BASIC(BasicItem.class, "tutorial_item");
 	
 	private Item item;
